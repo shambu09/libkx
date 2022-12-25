@@ -3,7 +3,7 @@ import { ModulusKeyBundle } from "../../domain/ModulusKeyBundle";
 
 type FPower = (value: Key, power: Key, modulus: Key) => Key;
 
-export interface Generator {
+export interface OPublicKeyGenerator {
     generate(privateKey: Key, modulusKeyBundle: ModulusKeyBundle): Key;
 }
 
@@ -17,7 +17,7 @@ const FGenerate =
         );
     };
 
-export const MakePublicKeyGenerator = (power: FPower): Generator => {
+export const MakePublicKeyGenerator = (power: FPower): OPublicKeyGenerator => {
     return {
         generate: FGenerate(power),
     };
