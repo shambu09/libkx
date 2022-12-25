@@ -13,6 +13,7 @@ import { PRIMES } from "./domain/PreCompPrimes";
 import { MakePublicKeyGenerator } from "./core/publicKey/generator";
 import { MakeSharedKeyGenerator } from "./core/sharedKey/generator";
 import { TWO } from "./domain/Constants";
+import { MakePrivateKeyGenerator } from "./core/privateKey/generator";
 
 export const isProbablePrime = CombinePrimalityTests([
     MakeTrialDivisionPrimalityTest(PRIMES),
@@ -26,6 +27,8 @@ export const randomPrimeGenerator = MakeRandomPrimeByBitsGenerator(
 
 export const publicKeyGenerator = MakePublicKeyGenerator(power);
 export const sharedKeyGenerator = MakeSharedKeyGenerator(power);
-export const privateKeyGenerator = randomPrimeGenerator;
+export const privateKeyGenerator = MakePrivateKeyGenerator(
+    generateRandomByBoundary
+);
 export const primeModulusGenerator = randomPrimeGenerator;
 export const defaultRootModulus = TWO;

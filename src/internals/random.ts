@@ -14,6 +14,7 @@ const parseBufToBigInt = (buf: Buffer): bigint => {
     return res;
 };
 
+// Random Generation -> [left, right)
 export const generateRandomByBoundary = (
     left: bigint,
     right: bigint,
