@@ -1,8 +1,9 @@
 import { ZERO, ONE, TWO } from "../domain/Constants";
-type FPower = (value: bigint, power: bigint, modulus: bigint) => bigint;
-type FGenerateRandomByBoundary = (left: bigint, right: bigint) => bigint;
-type FGenerateRandomByBits = (sizeByBits: number) => bigint;
-type FPrimalityTest = (n: bigint) => boolean;
+
+export type FPower = (value: bigint, power: bigint, modulus: bigint) => bigint;
+export type FGenerateRandomByBoundary = (left: bigint, right: bigint) => bigint;
+export type FGenerateRandomByBits = (sizeByBits: number) => bigint;
+export type FPrimalityTest = (n: bigint) => boolean;
 
 export const CombinePrimalityTests =
     (tests: FPrimalityTest[]): FPrimalityTest =>
@@ -57,7 +58,7 @@ export const MakeMillerRabinPrimalityTest =
         return true;
     };
 
-export const makeRandomPrimeByBitsGenerator =
+export const MakeRandomPrimeByBitsGenerator =
     (randomByBits: FGenerateRandomByBits, primalityTest: FPrimalityTest) =>
     (sizeByBits: number): bigint => {
         let randomBigInt = randomByBits(sizeByBits);

@@ -3,23 +3,29 @@ import {
     CombinePrimalityTests,
     MakeMillerRabinPrimalityTest,
     MakeTrialDivisionPrimalityTest,
-    makeRandomPrimeByBitsGenerator,
+    MakeRandomPrimeByBitsGenerator,
 } from "./internals/prime";
 import {
     generateRandomByBits,
     generateRandomByBoundary,
 } from "./internals/random";
 import { PRIMES } from "./domain/PreCompPrimes";
+import { MakePublicKeyGenerator } from "./core/publicKey/generator";
+import { MakeSharedKeyGenerator } from "./core/sharedKey/generator";
+import { TWO } from "./domain/Constants";
 
-const isProbablePrime = CombinePrimalityTests([
+export const isProbablePrime = CombinePrimalityTests([
     MakeTrialDivisionPrimalityTest(PRIMES),
     MakeMillerRabinPrimalityTest(2, power, generateRandomByBoundary),
 ]);
 
-const randomPrimeGenerator = makeRandomPrimeByBitsGenerator(
+export const randomPrimeGenerator = MakeRandomPrimeByBitsGenerator(
     generateRandomByBits,
     isProbablePrime
 );
 
-// const prime = randomPrimeGenerator(2048);
-// console.log(prime.toString(2).length);
+export const publicKeyGenerator = MakePublicKeyGenerator(power);
+export const sharedKeyGenerator = MakeSharedKeyGenerator(power);
+export const privateKeyGenerator = randomPrimeGenerator;
+export const primeModulusGenerator = randomPrimeGenerator;
+export const defaultRootModulus = TWO;

@@ -1,7 +1,7 @@
 import { randomBytes } from "crypto";
 import { ZERO, EIGHT, ONE } from "../domain/Constants";
 
-type FGenerateRandomBytes = (sizeByBytes: number) => Buffer;
+export type FGenerateRandomBytes = (sizeByBytes: number) => Buffer;
 
 const parseBufToBigInt = (buf: Buffer): bigint => {
     let res = ZERO;
