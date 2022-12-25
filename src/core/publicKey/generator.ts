@@ -1,15 +1,14 @@
-import { Key } from "../../domain/Key";
 import { ModulusKeyBundle } from "../../domain/ModulusKeyBundle";
 
-type FPower = (value: Key, power: Key, modulus: Key) => Key;
+type FPower = (value: bigint, power: bigint, modulus: bigint) => bigint;
 
 export interface OPublicKeyGenerator {
-    generate(privateKey: Key, modulusKeyBundle: ModulusKeyBundle): Key;
+    generate(privateKey: bigint, modulusKeyBundle: ModulusKeyBundle): bigint;
 }
 
 const FGenerate =
     (power: FPower) =>
-    (privateKey: Key, modulusKeyBundle: ModulusKeyBundle): Key => {
+    (privateKey: bigint, modulusKeyBundle: ModulusKeyBundle): bigint => {
         return power(
             modulusKeyBundle.RootModulus,
             privateKey,

@@ -15,16 +15,20 @@ import { MakeSharedKeyGenerator } from "./core/sharedKey/generator";
 import { TWO } from "./domain/Constants";
 import { MakePrivateKeyGenerator } from "./core/privateKey/generator";
 
+export interface INode {
+    privateKey: bigint;
+    publicKey: bigint;
+    sharedKey?: bigint;
+}
+
 export const isProbablePrime = CombinePrimalityTests([
     MakeTrialDivisionPrimalityTest(PRIMES),
     MakeMillerRabinPrimalityTest(2, power, generateRandomByBoundary),
 ]);
-
 export const randomPrimeGenerator = MakeRandomPrimeByBitsGenerator(
     generateRandomByBits,
     isProbablePrime
 );
-
 export const publicKeyGenerator = MakePublicKeyGenerator(power);
 export const sharedKeyGenerator = MakeSharedKeyGenerator(power);
 export const privateKeyGenerator = MakePrivateKeyGenerator(

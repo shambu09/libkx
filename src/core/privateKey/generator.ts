@@ -1,16 +1,15 @@
-import { ONE, ZERO } from "../../domain/Constants";
-import { Key } from "../../domain/Key";
+import { ZERO } from "../../domain/Constants";
 import { ModulusKeyBundle } from "../../domain/ModulusKeyBundle";
 
-export type FGenerateRandomByBoundary = (left: Key, right: Key) => Key;
+export type FGenerateRandomByBoundary = (left: bigint, right: bigint) => bigint;
 
 export interface OPrivateKeyGenerator {
-    generate(modulusKeyBundle: ModulusKeyBundle): Key;
+    generate(modulusKeyBundle: ModulusKeyBundle): bigint;
 }
 
 const FGenerate =
     (generateRandomByBoundary: FGenerateRandomByBoundary) =>
-    (modulusKeyBundle: ModulusKeyBundle): Key => {
+    (modulusKeyBundle: ModulusKeyBundle): bigint => {
         return generateRandomByBoundary(ZERO, modulusKeyBundle.PrimeModulus);
     };
 

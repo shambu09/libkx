@@ -1,6 +1,4 @@
-import { Key } from "./Key";
-
 export interface ModulusKeyBundle {
-    PrimeModulus: Key;
-    RootModulus: Key;
+    PrimeModulus: bigint;
+    RootModulus: bigint;
 }
